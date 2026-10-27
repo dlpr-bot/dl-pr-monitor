@@ -67,8 +67,8 @@ IRRELEVANT_PATTERNS = [
 ]
 
 MEDIA_MAP = {
-    "chosun":"조선일보","joongang":"중앙일보","donga":"동아일보","hani":"한겨레","khan":"경향신문",
-    "yna":"연합뉴스","ytn":"와이티엔","imnews":"MBC","kbs":"KBS","sbs":"SBS","mt.co":"머니투데이",
+    "ceoscoredaily":"CEO스코어데일리","seouleconews":"서울이코노미","magazine.hankyung":"한경비즈니스","biz.chosun":"조선비즈","chosun":"조선일보","joongang":"중앙일보","donga":"동아일보","hani":"한겨레","khan":"경향신문",
+    "yna":"연합뉴스","ytn":"와이티엔","kbsm":"경북신문","imnews":"MBC","kbs":"KBS","sbs":"SBS","mt.co":"머니투데이",
     "edaily":"이데일리","heraldcorp":"헤럴드경제","newsis":"뉴시스","newspim":"뉴스핌",
     "etnews":"전자신문","energy-news":"에너지신문","electimes":"일렉트릭타임스",
     "hankyung":"한국경제","mk.co":"매일경제","sedaily":"서울경제","ajunews":"아주경제",
@@ -83,7 +83,7 @@ MEDIA_MAP = {
     "dailian":"데일리안","newdaily":"뉴데일리","pennmike":"펜앤드마이크",
     "wikileaks":"위키리크스코리아","mediatoday":"미디어오늘","pdjournal":"PD저널",
     "journalist":"저널리스트","mindlenews":"마인들뉴스","naver":"네이버뉴스",
-    "daum":"다음뉴스","kakao":"카카오","biz.chosun":"조선비즈","news.chosun":"조선일보",
+    "daum":"다음뉴스","kakao":"카카오","news.chosun":"조선일보",
     "news.jtbc":"JTBC","news1":"뉴스1","tf.co":"더팩트","sisajournal":"시사저널",
     "weekly.chosun":"주간조선","monthly.chosun":"월간조선","economist":"이코노미스트",
     "moneys":"머니S","bizwatch":"비즈워치","thebell":"더벨","hankyoreh":"한겨레",
@@ -91,7 +91,7 @@ MEDIA_MAP = {
     "knnews":"경인일보","kyeonggi":"경기일보","joongdo":"중도일보","daejonilbo":"대전일보",
     "jeonbuk":"전북일보","jnilbo":"전남일보","gwangnam":"광남일보","jemin":"제민일보",
     "jejunews":"제주일보","kado":"강원도민일보","kwnews":"강원일보","etoday":"이투데이","sentv":"서울경제TV","theguru":"더구루",
-"hansbiz":"한스경제","asiatoday":"아시아투데이",
+"hansbiz":"한스경제","asiatoday":"아시아투데이","dnews":"대한경제",
 }
 # 표시용 한글 매체명 정규화 (영문 약칭 → 한글)
 MEDIA_KR_NAME = {
