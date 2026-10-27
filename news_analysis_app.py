@@ -74,7 +74,7 @@ MEDIA_MAP = {
     "hankyung":"한국경제","mk.co":"매일경제","sedaily":"서울경제","ajunews":"아주경제",
     "businesspost":"비즈니스포스트","fnnews":"파이낸셜뉴스","inews24":"아이뉴스24",
     "dt.co":"디지털타임스","hankookilbo":"한국일보","munhwa":"문화일보","ohmynews":"오마이뉴스",
-    "pressian":"프레시안","energydaily":"에너지데일리","naeil":"내일신문","seoul":"서울신문",
+    "pressian":"프레시안","energydaily":"에너지데일리","naeil":"내일신문","metroseoul":"메트로신문","seoul":"서울신문",
     "ekn":"에너지경제","kukminilbo":"국민일보","segyetimes":"세계일보","e2news":"이투뉴스",
     "nocutnews":"노컷뉴스","hani.co":"한겨레","kmib":"국민일보","donga.com":"동아일보",
     "joins":"중앙일보","chosun.com":"조선일보","jtbc":"JTBC","tvchosun":"TV조선",
@@ -90,7 +90,8 @@ MEDIA_MAP = {
     "kookje":"국제신문","idomin":"경남도민일보","gnmaeil":"경남매일","busan":"부산일보",
     "knnews":"경인일보","kyeonggi":"경기일보","joongdo":"중도일보","daejonilbo":"대전일보",
     "jeonbuk":"전북일보","jnilbo":"전남일보","gwangnam":"광남일보","jemin":"제민일보",
-    "jejunews":"제주일보","kado":"강원도민일보","kwnews":"강원일보",
+    "jejunews":"제주일보","kado":"강원도민일보","kwnews":"강원일보","etoday":"이투데이","sentv":"서울경제TV","theguru":"더구루",
+"hansbiz":"한스경제","asiatoday":"아시아투데이",
 }
 # 표시용 한글 매체명 정규화 (영문 약칭 → 한글)
 MEDIA_KR_NAME = {
