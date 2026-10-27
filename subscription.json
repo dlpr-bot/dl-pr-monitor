@@ -1,0 +1,24 @@
+{
+  "enabled": false,
+  "sender_email": "",
+  "sender_pw": "",
+  "recipients": "",
+  "send_hour": 7,
+  "send_minute": 30,
+  "keyword": "DL",
+  "days": 1,
+  "last_sent": "",
+  "subscribers": [
+    {
+      "email": "fabrerrick@hanmail.net",
+      "keyword": "DL, DL이앤씨, 디엘, 대림산업, 글래드, 아크로, 편한세상",
+      "send_hour": 6,
+      "send_minute": 30,
+      "days": 1,
+      "company_name": "",
+      "company_ticker": "",
+      "joined_at": "2026-10-27 17:07",
+      "start_date": "2026-10-27"
+    }
+  ]
+}
