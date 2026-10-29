@@ -18,6 +18,9 @@ _raw_pw             = os.environ["GMAIL_APP_PW"]
 GMAIL_APP_PW        = ''.join(c for c in _raw_pw if c.isalnum())
 print(f"발신 계정: {GMAIL_SENDER}")
 print(f"앱 비밀번호 길이: {len(GMAIL_APP_PW)}자리")
+
+print("NAVER_CLIENT_ID =", NAVER_CLIENT_ID[:5] if NAVER_CLIENT_ID else "EMPTY")
+print("NAVER_CLIENT_SECRET_LEN =", len(NAVER_CLIENT_SECRET))
 # 구독자 목록: subscribers.json 파일 우선, 없으면 환경변수 SUBSCRIBERS
 SUBSCRIBERS = []
 if os.path.exists("subscribers.json"):
@@ -75,19 +78,50 @@ def get_media(o,l):
     return "기타"
 
 def get_news(q, mx=1000):
-    url = "https://openapi.naver.com/v1/search/news.json"
-    hdr = {"X-Naver-Client-Id": NAVER_CLIENT_ID, "X-Naver-Client-Secret": NAVER_CLIENT_SECRET}
-    items, s = [], 1
-    while s <= mx:
+
+    url = "https://naverapihub.apigw.ntruss.com/search/v1/news"
+
+    hdr = {
+        "X-NCP-APIGW-API-KEY-ID": NAVER_CLIENT_ID,
+        "X-NCP-APIGW-API-KEY": NAVER_CLIENT_SECRET
+    }
+
+    items = []
+    s = 1
+
+    while s <= min(mx, 1000):
+
         try:
-            r = requests.get(url, headers=hdr,
-                params={"query":q,"display":100,"start":s,"sort":"date"}, timeout=10)
+
+            r = requests.get(
+                url,
+                headers=hdr,
+                params={
+                    "query": q,
+                    "display": 100,
+                    "start": s,
+                    "sort": "date",
+                    "format": "json"
+                },
+                timeout=10
+            )
+
             batch = r.json().get("items", [])
-            if not batch: break
+
+            if not batch:
+                break
+
             items.extend(batch)
-            if len(batch) < 100: break
+
+            if len(batch) < 100:
+                break
+
             s += 100
-        except: break
+
+        except Exception as e:
+            print("뉴스수집 오류:", e)
+            break
+
     return items
 
 def collect_and_build_html(label, days):
