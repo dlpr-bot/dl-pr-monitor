@@ -2855,289 +2855,125 @@ def render_report(cd):
     else:
         st.caption("데이터 부족으로 히트맵 생성 불가")
 
-    # ═══ 06. 위기관리 키워드 추세 (부정 Top1, 최근 3개월 일자별) ═══
-    # ═══ 05-B. 블랙리스트 기자 ═══
-    st.markdown("<div style='margin-top:20px;'></div>", unsafe_allow_html=True)
-    divider("06 · 기자 블랙리스트  *기간 내 3건 이상 부정보도")
+# ═══ 06. 경쟁사 리스크 순위 ═══
 
-    df_rep = df[df["기자"] != "—"].copy()
-    if df_rep.empty:
-        st.caption("기간 내 3건 이상의 부정 보도를 작성한 기자가 없습니다")
-    else:
-        rep_stats = []
-        for rep_name, grp in df_rep.groupby("기자"):
-            tot_r   = len(grp)
-            neg_r   = int((grp["감성"]=="부정").sum())
-            pos_r   = int((grp["감성"]=="긍정").sum())
-            neg_pct = neg_r / tot_r * 100
-            medias  = grp["매체"].value_counts().index[:2].tolist()
-            rep_stats.append((rep_name, tot_r, neg_r, pos_r, neg_pct, medias, grp))
-        # 부정 건수 3건 이상만, 부정 비율 내림차순
-        rep_stats = [r for r in rep_stats if r[2] >= 3]
-        rep_stats.sort(key=lambda x: (-x[2], -x[4]))
-        show_n_bl = st.session_state.get(f'bl_show_{label}', 3)
-        black_list = rep_stats[:show_n_bl]
+COMPETITORS = [
+    "DL이앤씨",
+    "현대건설",
+    "GS건설",
+    "삼성물산",
+    "대우건설",
+    "포스코이앤씨",
+    "롯데건설"
+]
 
-        if not black_list:
-            st.caption("기간 내 3건 이상의 부정 보도를 작성한 기자가 없습니다")
-        else:
-            bl1, bl2 = st.columns(2)
-            with bl1:
-                st.markdown(
-                    f"<div style='background:#FFF5F5;border:1.5px solid #FFCDD2;border-radius:8px;"
-                    f"padding:10px;font-family:{FONT_KR};'>",
-                    unsafe_allow_html=True
-                )
-                st.markdown(
-                    f"<div style='font-size:12px;font-weight:800;color:#C62828;margin-bottom:6px;'>"
-                    f"🚨 부정 보도 집중 기자 TOP {len(black_list)}</div>",
-                    unsafe_allow_html=True
-                )
+divider("06 · 경쟁사 리스크 순위")
 
-                # 툴팁 CSS (재사용)
-                bl_css = f"""<style>
-.bl-tip {{ position:relative;display:inline-block;cursor:pointer; }}
-.bl-tip .bl-box {{
-  visibility:hidden;opacity:0;
-  background:#1a1a2e;color:#fff;font-size:10px;line-height:1.7;
-  border-radius:6px;padding:8px 10px;
-  position:absolute;z-index:999;bottom:120%;left:0;
-  width:300px;white-space:pre-line;
-  box-shadow:0 4px 14px rgba(0,0,0,.35);
-  transition:opacity .15s;font-family:{FONT_KR};pointer-events:none;
-}}
-.bl-tip:hover .bl-box {{ visibility:visible;opacity:1; }}
-</style>"""
+comp_rows = []
 
-                bl_rows = ""
-                for rank_i, (rep_name, tot_r, neg_r, pos_r, neg_pct, medias, grp) in enumerate(black_list, 1):
-                    media_str = " · ".join(medias)
-                    gi_r = MEDIA_GRADE.get(medias[0] if medias else "", {})
-                    grade_r = gi_r.get("grade","")
-                    gc_r = GRADE_COLOR.get(grade_r,"#aaa")
-                    badge_r = (f"<span style='background:{gc_r};color:white;padding:0 3px;"
-                               f"border-radius:2px;font-size:8px;font-weight:700;'>{grade_r}</span> ") if grade_r else ""
+for comp in COMPETITORS:
 
-                    # 툴팁 기사 목록
-                    neg_arts = grp[grp["감성"]=="부정"].sort_values("일자", ascending=False)
-                    tip_lines = "\n".join([
-                        f"· {r['일자']}  [{r['매체']}]  {r['헤드라인'][:20]}"
-                        for _, r in neg_arts.head(5).iterrows()
-                    ])
-                    tip_content = f"부정 기사 {neg_r}건\n──────────────\n{tip_lines}"
+    try:
 
-                    bar_w = int(neg_pct)
-                    bl_rows += f"""<tr style='border-bottom:1px solid #FFE0E0;'>
-  <td style='padding:6px 6px;font-size:11px;color:#888;text-align:center;font-weight:700;'>{rank_i}</td>
-  <td style='padding:6px 8px;'>
-    <div class='bl-tip'>
-      <span style='font-size:12px;font-weight:800;color:#C62828;'>{rep_name} 기자</span>
-      <span class='bl-box'>{tip_content}</span>
-    </div>
-    <div style='font-size:9px;color:#888;margin-top:1px;'>{badge_r}{media_str}</div>
-  </td>
-  <td style='padding:6px 8px;text-align:center;'>
-    <span style='font-size:13px;font-weight:800;color:#C62828;'>{neg_r}</span>
-    <span style='font-size:9px;color:#aaa;'>/{tot_r}건</span>
-  </td>
-  <td style='padding:6px 8px;min-width:80px;'>
-    <div style='background:#f5f5f5;border-radius:4px;height:7px;'>
-      <div style='background:#C62828;width:{bar_w}%;height:7px;border-radius:4px;'></div>
-    </div>
-    <div style='font-size:9px;color:#C62828;font-weight:700;margin-top:1px;'>{neg_pct:.0f}%</div>
-  </td>
-</tr>"""
+        raw_comp = get_news(comp, 200)
 
-                st.markdown(
-                    f"""{bl_css}<table style='width:100%;border-collapse:collapse;font-family:{FONT_KR};'>
-  <tr style='background:#FFEBEE;font-size:10px;color:#888;'>
-    <th style='padding:4px 6px;'>#</th>
-    <th style='padding:4px 8px;text-align:left;'>기자 / 매체</th>
-    <th style='padding:4px 8px;'>부정건수</th>
-    <th style='padding:4px 8px;text-align:left;'>부정비율</th>
-  </tr>
-  {bl_rows}
-</table>""",
-                    unsafe_allow_html=True
-                )
-                # 더보기 버튼
-                total_bl = len(rep_stats)
-                cur_show = st.session_state.get(f'bl_show_{label}', 3)
-                if cur_show < total_bl:
-                    if st.button(f"▼ 더보기 ({total_bl - cur_show}명 더)", key=f"bl_more_{label}"):
-                        st.session_state[f'bl_show_{label}'] = cur_show + 3
-                        st.rerun()
-                st.markdown("</div>", unsafe_allow_html=True)
+        comp_arts = []
 
-            with bl2:
-                st.markdown(
-                    f"""<div style='background:#F8F9FA;border:1px solid #ddd;border-radius:8px;
-padding:14px 16px;font-family:{FONT_KR};font-size:11px;line-height:1.9;color:#444;'>
-<div style='font-size:12px;font-weight:800;color:#003366;margin-bottom:8px;'>📋 블랙리스트 기자 활용 가이드</div>
-<div style='margin-bottom:6px;'><b style='color:#C62828;'>①</b> 커서를 기자명에 올리면 해당 기사 목록 확인</div>
-<div style='margin-bottom:6px;'><b style='color:#C62828;'>②</b> 해당 기자 취재 시 사실관계 자료 선제 제공</div>
-<div style='margin-bottom:6px;'><b style='color:#C62828;'>③</b> 보도자료 배포 시 우선 배제 또는 별도 관리</div>
-<div style='margin-bottom:6px;'><b style='color:#C62828;'>④</b> 동일 매체 내 우호 기자와 관계 집중 강화</div>
-<div style='margin-top:10px;background:#FFF8E1;border-left:3px solid #F9A825;
-padding:7px 10px;border-radius:0 4px 4px 0;font-size:10px;color:#777;'>
-⚠️ 기자명은 description의 '홍길동 기자' 패턴으로 자동 추출합니다.
-매체에 따라 미표기되는 경우가 있어 일부 누락될 수 있습니다.</div>
-</div>""",
-                    unsafe_allow_html=True
-                )
-        top_crisis_kw = neg_kws[0][0] if neg_kws else None
+        for a in raw_comp:
 
-        if top_crisis_kw:
+            title = clean(a.get("title", ""))
+            desc = clean(a.get("description", ""))
 
-            divider(
-                f"07 · 위기관리 키워드 추세 — 「{top_crisis_kw}」 최근 3개월 일별 노출"
+            text = title + " " + desc
+
+            if not is_relevant(text):
+                continue
+
+            comp_arts.append({
+                "감성": get_sentiment(text)
+            })
+
+        total_cnt = len(comp_arts)
+
+        neg_cnt = len(
+            [
+                x
+                for x in comp_arts
+                if x["감성"] == "부정"
+            ]
+        )
+
+        neg_rate = (
+            round(
+                (neg_cnt / total_cnt) * 100,
+                1
             )
+            if total_cnt > 0
+            else 0
+        )
 
-            crisis_end = datetime.now()
-            crisis_start = crisis_end - timedelta(days=90)
+        if neg_rate >= 15:
+            risk = "🔴 HIGH"
+        elif neg_rate >= 10:
+            risk = "🟠 MEDIUM"
+        else:
+            risk = "🟢 LOW"
 
-            with st.spinner(
-                f"'{top_crisis_kw}' 최근 3개월 데이터 수집 중..."
-            ):
-                crisis_raw = get_news(top_crisis_kw, 1000)
+        comp_rows.append({
+            "회사": comp,
+            "전체기사": total_cnt,
+            "부정기사": neg_cnt,
+            "부정비율": neg_rate,
+            "위험도": risk
+        })
 
-            crisis_records = []
+    except Exception:
+        pass
 
-            for a in crisis_raw:
+if comp_rows:
 
-                pub = a.get("pubDate", "")
+    comp_df = pd.DataFrame(comp_rows)
 
-                try:
+    comp_df = comp_df.sort_values(
+        "부정비율",
+        ascending=False
+    )
 
-                    ad = datetime.strptime(
-                        pub,
-                        "%a, %d %b %Y %H:%M:%S %z"
-                    ).date()
+    st.dataframe(
+        comp_df,
+        use_container_width=True
+    )
 
-                    if not (
-                        crisis_start.date() <= ad <= crisis_end.date()
-                    ):
-                        continue
+    fig = px.bar(
+        comp_df,
+        x="회사",
+        y="부정비율",
+        color="부정비율",
+        color_continuous_scale="Reds",
+        text="부정비율",
+        title="경쟁사 부정기사 비율 비교"
+    )
 
-                    ds = ad.strftime("%Y-%m-%d")
+    fig.update_traces(
+        texttemplate="%{text:.1f}%",
+        textposition="outside"
+    )
 
-                except Exception:
-                    continue
+    fig.update_layout(
+        height=350,
+        showlegend=False
+    )
 
-                title = clean(a.get("title", ""))
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
 
-                if not is_relevant(title):
-                    continue
+else:
 
-                crisis_records.append({
-                    "일자": ds
-                })
-
-            if crisis_records:
-
-                cdf = pd.DataFrame(crisis_records)
-
-                daily_crisis = (
-                    cdf.groupby("일자")
-                    .size()
-                    .reset_index(name="건수")
-                )
-
-                daily_crisis["dt"] = pd.to_datetime(
-                    daily_crisis["일자"]
-                )
-
-                all_days = pd.date_range(
-                    crisis_start,
-                    crisis_end,
-                    freq="D"
-                )
-
-                daily_full = pd.DataFrame({
-                    "dt": all_days
-                })
-
-                daily_full["일자"] = (
-                    daily_full["dt"]
-                    .dt.strftime("%Y-%m-%d")
-                )
-
-                daily_merged = (
-                    daily_full.merge(
-                        daily_crisis[["일자", "건수"]],
-                        on="일자",
-                        how="left"
-                    )
-                    .fillna(0)
-                )
-
-                daily_merged["건수"] = (
-                    daily_merged["건수"]
-                    .astype(int)
-                )
-
-                fig_crisis = go.Figure()
-
-                fig_crisis.add_trace(
-                    go.Scatter(
-                        x=daily_merged["dt"],
-                        y=daily_merged["건수"],
-                        mode="lines+markers",
-                        line=dict(
-                            color="#C62828",
-                            width=2
-                        ),
-                        marker=dict(
-                            size=4,
-                            color="#C62828"
-                        ),
-                        fill="tozeroy",
-                        fillcolor="rgba(198,40,40,0.08)",
-                        hovertemplate="%{x|%m월 %d일} · %{y}회 노출<extra></extra>",
-                    )
-                )
-
-                fig_crisis.update_layout(
-                    plot_bgcolor="white",
-                    paper_bgcolor="white",
-                    font=dict(
-                        family=FONT_KR,
-                        size=11
-                    ),
-                    margin=dict(
-                        l=40,
-                        r=10,
-                        t=10,
-                        b=40
-                    ),
-                    height=240,
-                    hovermode="x unified",
-                    dragmode=False,
-                    xaxis=dict(
-                        tickformat="%m/%d",
-                        showgrid=False,
-                        tickangle=-30,
-                        dtick=7 * 86400000,
-                        tickmode="linear"
-                    ),
-                    yaxis=dict(
-                        showgrid=True,
-                        gridcolor="#f5f5f5",
-                        rangemode="tozero"
-                    ),
-                )
-
-                st.plotly_chart(
-                    fig_crisis,
-                    use_container_width=True,
-                    config=cfg()
-                )
-
-            else:
-
-                st.caption(
-                    "최근 3개월 해당 키워드 데이터 없음"
-                )
+    st.caption(
+        "경쟁사 기사 데이터 없음"
+    )
 
     # ═══ 07. 비판 포인트 레이더 + As-Is/To-Be ═══
     divider("08 · 비판 포인트 & 대응 전략")
