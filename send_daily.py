@@ -271,7 +271,7 @@ def collect_and_build_html(label, days):
     <a href='{APP_URL}?kw={requests.utils.quote(label)}&days={days}' target='_blank' style='display:inline-block;background:#003366;color:white;padding:10px 28px;border-radius:20px;font-size:13px;font-weight:700;text-decoration:none;'>⚡ 전체 분석 보고서 앱에서 보기 →</a>
   </div>
   <div style='background:#f8f8f8;padding:12px 24px;font-size:10px;color:#aaa;text-align:center;'>
-    ⚡ 홍보실에 꼭 필요한 뉴스 분석시스템 by 글쓰는 여행자 | 네이버 뉴스 API 기반<br>
+    ⚡ DL 뉴스 분석시스템 by 김 차장 | 네이버 뉴스 API 기반<br>
     본 메일은 자동 발송되었습니다. 수신을 원하지 않으면 구독을 해제해 주세요.
   </div>
 </div></body></html>"""
