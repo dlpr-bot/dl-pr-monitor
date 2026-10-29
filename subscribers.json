@@ -20,5 +20,27 @@
     "company_ticker": "",
     "joined_at": "2026-10-29 09:00",
     "start_date": "2026-10-29"
+  },
+  {
+    "email": "david.cho@dlholdings.co.kr",
+    "keyword": "DL이앤씨",
+    "send_hour": 8,
+    "send_minute": 0,
+    "days": 1,
+    "company_name": "DL",
+    "company_ticker": "",
+    "joined_at": "2026-10-29 09:00",
+    "start_date": "2026-10-29"
+  },
+  {
+    "email": "hkkoh@dlholdings.co.kr",
+    "keyword": "DL이앤씨",
+    "send_hour": 8,
+    "send_minute": 0,
+    "days": 1,
+    "company_name": "DL",
+    "company_ticker": "",
+    "joined_at": "2026-10-29 09:00",
+    "start_date": "2026-10-29"
   }
 ]
