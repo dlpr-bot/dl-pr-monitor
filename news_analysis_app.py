@@ -42,23 +42,23 @@ APP_URL = st.secrets.get(
 FONT_KR = "'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', Arial, sans-serif"
 
 MEDIA_GRADE = {
-    "조선일보":{"rank":1,"rate":3.73,"grade":"S"},"중앙일보":{"rank":2,"rate":2.45,"grade":"A"},
-    "동아일보":{"rank":3,"rate":1.95,"grade":"A"},"매일경제":{"rank":4,"rate":0.97,"grade":"A"},
-    "한겨레":{"rank":5,"rate":0.62,"grade":"B"},"한국경제":{"rank":6,"rate":0.43,"grade":"B"},
-    "경향신문":{"rank":7,"rate":0.41,"grade":"B"},"연합뉴스":{"rank":8,"rate":0.38,"grade":"B"},
-    "YTN":{"rank":9,"rate":0.35,"grade":"B"},"KBS":{"rank":10,"rate":0.30,"grade":"B"},
-    "MBC":{"rank":11,"rate":0.28,"grade":"B"},"SBS":{"rank":12,"rate":0.25,"grade":"B"},
-    "한국일보":{"rank":13,"rate":0.31,"grade":"B"},"국민일보":{"rank":14,"rate":0.19,"grade":"C"},
-    "문화일보":{"rank":15,"rate":0.12,"grade":"C"},"서울신문":{"rank":16,"rate":0.10,"grade":"C"},
-    "서울경제":{"rank":17,"rate":0.08,"grade":"C"},"세계일보":{"rank":18,"rate":0.02,"grade":"D"},
-    "머니투데이":{"rank":19,"rate":0.05,"grade":"D"},"이데일리":{"rank":20,"rate":0.04,"grade":"D"},
-    "헤럴드경제":{"rank":21,"rate":0.03,"grade":"D"},"뉴시스":{"rank":22,"rate":0.02,"grade":"D"},
-    "뉴스핌":{"rank":23,"rate":0.02,"grade":"D"},
+    "조선일보":{"rank":1,"rate":3.73,"grade":"S"},"중앙일보":{"rank":2,"rate":2.45,"grade":"S"},
+    "동아일보":{"rank":3,"rate":1.95,"grade":"S"},"매일경제":{"rank":4,"rate":0.97,"grade":"A"},
+    "한겨레":{"rank":5,"rate":0.62,"grade":"A"},"한국경제":{"rank":6,"rate":0.43,"grade":"A"},
+    "경향신문":{"rank":7,"rate":0.41,"grade":"A"},"연합뉴스":{"rank":8,"rate":0.38,"grade":"A"},
+    "YTN":{"rank":9,"rate":0.35,"grade":"A"},"KBS":{"rank":10,"rate":0.30,"grade":"S"},
+    "MBC":{"rank":11,"rate":0.28,"grade":"S"},"SBS":{"rank":12,"rate":0.25,"grade":"S"},
+    "한국일보":{"rank":13,"rate":0.31,"grade":"A"},"국민일보":{"rank":14,"rate":0.19,"grade":"A"},
+    "문화일보":{"rank":15,"rate":0.12,"grade":"A"},"서울신문":{"rank":16,"rate":0.10,"grade":"A"},
+    "서울경제":{"rank":17,"rate":0.08,"grade":"A"},"세계일보":{"rank":18,"rate":0.02,"grade":"A"},
+    "머니투데이":{"rank":19,"rate":0.05,"grade":"A"},"이데일리":{"rank":20,"rate":0.04,"grade":"A"},
+    "헤럴드경제":{"rank":21,"rate":0.03,"grade":"A"},"뉴시스":{"rank":22,"rate":0.02,"grade":"A"},
+    "뉴스1":{"rank":23,"rate":0.02,"grade":"A"},
 }
 GRADE_COLOR = {"S":"#B71C1C","A":"#E64A19","B":"#1565C0","C":"#2E7D32","D":"#616161"}
 
 POSITIVE_WORDS = ["성과","달성","개선","혁신","성장","우수","협력","기여","선정","수상","기대","친환경","안정","흑자","증가","추진","완료","승인","투자","확대","증대","국익","선도","도약","강화","지원","활성화","성공","최초","호평","기록","돌파","수주","계약","협약","양해각서","출범","개통","준공","신기록"]
-NEGATIVE_WORDS = ["사고","부패","비리","손실","적자","위기","파업","갈등","논란","문제","우려","하락","감소","중대재해","사망","중단","취소","반발","지연","비판","담합","부담","폐쇄","위반","처벌","고발","감사원","적발","의혹","과태료","경고","해임","부실","하자","특혜","불법","소송","압수수색","조사","수사","민원","항의","경찰","패소","기소","고소","피해","논란","벌금","구속","재판","징계","결함","은폐","허위","과장","붕괴","침수"]
+NEGATIVE_WORDS = ["사고","부패","비리","손실","적자","위기","파업","갈등","논란","문제","우려","하락","감소","중대재해","사망","중단","취소","반발","지연","비판","담합","부담","폐쇄","위반","처벌","고발","감사원","적발","의혹","과태료","경고","해임","부실","하자","특혜","불법","소송","압수수색","조사","수사","민원","항의","경찰","패소","기소","고소","피해","논란","벌금","구속","재판","징계","결함","은폐","허위","과장","붕괴","침수","철수"]
 
 IRRELEVANT_PATTERNS = [
     r'배구',r'축구',r'야구',r'농구',r'골프',r'올림픽',r'월드컵',r'선수단',r'드래프트',r'챔피언십',
@@ -67,11 +67,11 @@ IRRELEVANT_PATTERNS = [
 ]
 
 MEDIA_MAP = {
-    "ceoscoredaily":"CEO스코어데일리","seouleconews":"서울이코노미","magazine.hankyung":"한경비즈니스","biz.chosun":"조선비즈","chosun":"조선일보","joongang":"중앙일보","donga":"동아일보","hani":"한겨레","khan":"경향신문",
+    "joongangenews":"중앙이코노미","sportschosun":"스포츠조선","seoulfn":"서울파이낸스","sedaily":"서울경제","ceoscoredaily":"CEO스코어데일리","seouleconews":"서울이코노미","magazine.hankyung":"한경비즈니스","biz.chosun":"조선비즈","chosun":"조선일보","joongang":"중앙일보","donga":"동아일보","hani":"한겨레","khan":"경향신문",
     "yna":"연합뉴스","ytn":"와이티엔","kbsm":"경북신문","imnews":"MBC","kbs":"KBS","sbs":"SBS","mt.co":"머니투데이",
     "edaily":"이데일리","heraldcorp":"헤럴드경제","newsis":"뉴시스","newspim":"뉴스핌",
     "etnews":"전자신문","energy-news":"에너지신문","electimes":"일렉트릭타임스",
-    "hankyung":"한국경제","mk.co":"매일경제","sedaily":"서울경제","ajunews":"아주경제",
+    "hankyung":"한국경제","mk.co":"매일경제","ajunews":"아주경제",
     "businesspost":"비즈니스포스트","fnnews":"파이낸셜뉴스","inews24":"아이뉴스24",
     "dt.co":"디지털타임스","hankookilbo":"한국일보","munhwa":"문화일보","ohmynews":"오마이뉴스",
     "pressian":"프레시안","energydaily":"에너지데일리","naeil":"내일신문","metroseoul":"메트로신문","seoul":"서울신문",
@@ -91,7 +91,7 @@ MEDIA_MAP = {
     "knnews":"경인일보","kyeonggi":"경기일보","joongdo":"중도일보","daejonilbo":"대전일보",
     "jeonbuk":"전북일보","jnilbo":"전남일보","gwangnam":"광남일보","jemin":"제민일보",
     "jejunews":"제주일보","kado":"강원도민일보","kwnews":"강원일보","etoday":"이투데이","sentv":"서울경제TV","theguru":"더구루",
-"hansbiz":"한스경제","asiatoday":"아시아투데이","dnews":"대한경제",
+"hansbiz":"한스경제","asiatoday":"아시아투데이","dnews":"대한경제","asiatime":"아시아타임스",
 }
 # 표시용 한글 매체명 정규화 (영문 약칭 → 한글)
 MEDIA_KR_NAME = {
@@ -2985,59 +2985,159 @@ padding:7px 10px;border-radius:0 4px 4px 0;font-size:10px;color:#777;'>
 </div>""",
                     unsafe_allow_html=True
                 )
-    top_crisis_kw = neg_kws[0][0] if neg_kws else None
-    if top_crisis_kw:
-        divider(f"07 · 위기관리 키워드 추세 — 「{top_crisis_kw}」 최근 3개월 일별 노출")
-        crisis_end = datetime.now()
-        crisis_start = crisis_end - timedelta(days=90)
-        with st.spinner(f"'{top_crisis_kw}' 최근 3개월 데이터 수집 중..."):
-            crisis_raw = get_news(top_crisis_kw, 3000)
-        crisis_records = []
-        for a in crisis_raw:
-            pub = a.get("pubDate","")
-            try:
-                ad = datetime.strptime(pub[:16], "%a, %d %b %Y").date()
-                if not (crisis_start.date() <= ad <= crisis_end.date()): continue
-                ds = ad.strftime("%Y-%m-%d")
-            except:
-                ds = pub[:10]
-            title = clean(a.get("title",""))
-            if not is_relevant(title): continue
-            crisis_records.append({"일자": ds})
-        if crisis_records:
-            cdf = pd.DataFrame(crisis_records)
-            daily_crisis = cdf.groupby("일자").size().reset_index(name="건수")
-            daily_crisis["dt"] = pd.to_datetime(daily_crisis["일자"])
-            all_days = pd.date_range(crisis_start, crisis_end, freq='D')
-            daily_full = pd.DataFrame({"dt": all_days})
-            daily_full["일자"] = daily_full["dt"].dt.strftime("%Y-%m-%d")
-            daily_merged = daily_full.merge(daily_crisis[["일자","건수"]], on="일자", how="left").fillna(0)
-            daily_merged["건수"] = daily_merged["건수"].astype(int)
+        top_crisis_kw = neg_kws[0][0] if neg_kws else None
 
-            fig_crisis = go.Figure()
-            fig_crisis.add_trace(go.Scatter(
-                x=daily_merged["dt"],
-                y=daily_merged["건수"],
-                mode="lines+markers",
-                line=dict(color="#C62828", width=2),
-                marker=dict(size=4, color="#C62828"),
-                fill="tozeroy",
-                fillcolor="rgba(198,40,40,0.08)",
-                hovertemplate="%{x|%m월 %d일} · %{y}회 노출<extra></extra>",
-            ))
-            fig_crisis.update_layout(
-                plot_bgcolor="white", paper_bgcolor="white",
-                font=dict(family=FONT_KR, size=11),
-                margin=dict(l=40, r=10, t=10, b=40), height=240,
-                hovermode="x unified",
-                dragmode=False,
-                xaxis=dict(tickformat="%m/%d", showgrid=False, tickangle=-30,
-                           dtick=7*86400000, tickmode="linear"),
-                yaxis=dict(showgrid=True, gridcolor="#f5f5f5", rangemode="tozero"),
+        if top_crisis_kw:
+
+            divider(
+                f"07 · 위기관리 키워드 추세 — 「{top_crisis_kw}」 최근 3개월 일별 노출"
             )
-            st.plotly_chart(fig_crisis, use_container_width=True, config=cfg())
-        else:
-            st.caption("최근 3개월 해당 키워드 데이터 없음")
+
+            crisis_end = datetime.now()
+            crisis_start = crisis_end - timedelta(days=90)
+
+            with st.spinner(
+                f"'{top_crisis_kw}' 최근 3개월 데이터 수집 중..."
+            ):
+                crisis_raw = get_news(top_crisis_kw, 1000)
+
+            crisis_records = []
+
+            for a in crisis_raw:
+
+                pub = a.get("pubDate", "")
+
+                try:
+
+                    ad = datetime.strptime(
+                        pub,
+                        "%a, %d %b %Y %H:%M:%S %z"
+                    ).date()
+
+                    if not (
+                        crisis_start.date() <= ad <= crisis_end.date()
+                    ):
+                        continue
+
+                    ds = ad.strftime("%Y-%m-%d")
+
+                except Exception:
+                    continue
+
+                title = clean(a.get("title", ""))
+
+                if not is_relevant(title):
+                    continue
+
+                crisis_records.append({
+                    "일자": ds
+                })
+
+            if crisis_records:
+
+                cdf = pd.DataFrame(crisis_records)
+
+                daily_crisis = (
+                    cdf.groupby("일자")
+                    .size()
+                    .reset_index(name="건수")
+                )
+
+                daily_crisis["dt"] = pd.to_datetime(
+                    daily_crisis["일자"]
+                )
+
+                all_days = pd.date_range(
+                    crisis_start,
+                    crisis_end,
+                    freq="D"
+                )
+
+                daily_full = pd.DataFrame({
+                    "dt": all_days
+                })
+
+                daily_full["일자"] = (
+                    daily_full["dt"]
+                    .dt.strftime("%Y-%m-%d")
+                )
+
+                daily_merged = (
+                    daily_full.merge(
+                        daily_crisis[["일자", "건수"]],
+                        on="일자",
+                        how="left"
+                    )
+                    .fillna(0)
+                )
+
+                daily_merged["건수"] = (
+                    daily_merged["건수"]
+                    .astype(int)
+                )
+
+                fig_crisis = go.Figure()
+
+                fig_crisis.add_trace(
+                    go.Scatter(
+                        x=daily_merged["dt"],
+                        y=daily_merged["건수"],
+                        mode="lines+markers",
+                        line=dict(
+                            color="#C62828",
+                            width=2
+                        ),
+                        marker=dict(
+                            size=4,
+                            color="#C62828"
+                        ),
+                        fill="tozeroy",
+                        fillcolor="rgba(198,40,40,0.08)",
+                        hovertemplate="%{x|%m월 %d일} · %{y}회 노출<extra></extra>",
+                    )
+                )
+
+                fig_crisis.update_layout(
+                    plot_bgcolor="white",
+                    paper_bgcolor="white",
+                    font=dict(
+                        family=FONT_KR,
+                        size=11
+                    ),
+                    margin=dict(
+                        l=40,
+                        r=10,
+                        t=10,
+                        b=40
+                    ),
+                    height=240,
+                    hovermode="x unified",
+                    dragmode=False,
+                    xaxis=dict(
+                        tickformat="%m/%d",
+                        showgrid=False,
+                        tickangle=-30,
+                        dtick=7 * 86400000,
+                        tickmode="linear"
+                    ),
+                    yaxis=dict(
+                        showgrid=True,
+                        gridcolor="#f5f5f5",
+                        rangemode="tozero"
+                    ),
+                )
+
+                st.plotly_chart(
+                    fig_crisis,
+                    use_container_width=True,
+                    config=cfg()
+                )
+
+            else:
+
+                st.caption(
+                    "최근 3개월 해당 키워드 데이터 없음"
+                )
 
     # ═══ 07. 비판 포인트 레이더 + As-Is/To-Be ═══
     divider("08 · 비판 포인트 & 대응 전략")
