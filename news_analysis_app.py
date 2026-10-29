@@ -3,6 +3,7 @@ import streamlit as st
 import requests
 import pandas as pd
 import plotly.graph_objects as go
+import plotly.express as px
 import numpy as np
 from datetime import datetime, timedelta
 import re, io, random, json, os, smtplib, threading
