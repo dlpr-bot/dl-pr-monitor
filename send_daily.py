@@ -125,32 +125,66 @@ def get_news(q, mx=1000):
     return items
 
 def collect_and_build_html(label, days):
+
     end_dt   = datetime.now().date()
     start_dt = end_dt - timedelta(days=max(1, int(days)))
-    print(f"    수집 기간: {start_dt} ~ {end_dt}")
+
+    print(f"수집 기간: {start_dt} ~ {end_dt}")
+
     raw = get_news(label, 1000)
-    print(f"    네이버 API 수집: {len(raw)}건")
+
+    print(f"네이버 API 수집: {len(raw)}건")
+
     arts = []
+
     for a in raw:
-        pub = a.get("pubDate","")
+
+        pub = a.get("pubDate", "")
+
         try:
-            ad = datetime.strptime(pub[:16], "%a, %d %b %Y").date()
+
+            ad = datetime.strptime(
+                pub,
+                "%a, %d %b %Y %H:%M:%S %z"
+            ).date()
+
+            if not (start_dt <= ad <= end_dt):
+                continue
+
             ds = ad.strftime("%Y-%m-%d")
-        except:
-            ds = pub[:10]
-        title = clean(a.get("title","")); desc = clean(a.get("description",""))
-        text  = title + " " + desc
-        orig  = a.get("originallink",""); link = a.get("link","")
-        if not is_relevant(text): continue
+
+        except Exception:
+            continue
+
+        title = clean(a.get("title", ""))
+        desc = clean(a.get("description", ""))
+
+        text = title + " " + desc
+
+        orig = a.get("originallink", "")
+        link = a.get("link", "")
+
+        if not is_relevant(text):
+            continue
+
         media = get_media(orig, link)
-        arts.append({"일자":ds,"매체":media,"헤드라인":title,
-                     "요약":summarize(desc,30),"감성":get_sentiment(text),
-                     "링크":orig if orig else link})
-    print(f"    필터 후 기사: {len(arts)}건")
+
+        arts.append({
+            "일자": ds,
+            "매체": media,
+            "헤드라인": title,
+            "요약": summarize(desc, 30),
+            "감성": get_sentiment(text),
+            "링크": orig if orig else link
+        })
+
+    print(f"필터 후 기사: {len(arts)}건")
+
     if not arts:
         return None, None
 
     df = pd.DataFrame(arts)
+    df = df.drop_duplicates(subset=["헤드라인"])
     period_str = f"{start_dt.strftime('%Y.%m.%d')} ~ {end_dt.strftime('%m.%d')}"
     total = len(df)
     cv    = df["감성"].value_counts()
