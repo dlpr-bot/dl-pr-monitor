@@ -54,7 +54,7 @@ MEDIA_GRADE = {
     "서울경제":{"rank":17,"rate":0.08,"grade":"A"},"세계일보":{"rank":18,"rate":0.02,"grade":"A"},
     "머니투데이":{"rank":19,"rate":0.05,"grade":"A"},"이데일리":{"rank":20,"rate":0.04,"grade":"A"},
     "헤럴드경제":{"rank":21,"rate":0.03,"grade":"A"},"뉴시스":{"rank":22,"rate":0.02,"grade":"A"},
-    "뉴스1":{"rank":23,"rate":0.02,"grade":"A"},
+    "뉴스1":{"rank":23,"rate":0.02,"grade":"A"},"연합뉴스TV":{"rank":23,"rate":0.02,"grade":"A"},
 }
 GRADE_COLOR = {"S":"#B71C1C","A":"#E64A19","B":"#1565C0","C":"#2E7D32","D":"#616161"}
 
@@ -68,7 +68,7 @@ IRRELEVANT_PATTERNS = [
 ]
 
 MEDIA_MAP = {
-    "joongangenews":"중앙이코노미","sportschosun":"스포츠조선","seoulfn":"서울파이낸스","sedaily":"서울경제","ceoscoredaily":"CEO스코어데일리","seouleconews":"서울이코노미","magazine.hankyung":"한경비즈니스","biz.chosun":"조선비즈","chosun":"조선일보","joongang":"중앙일보","donga":"동아일보","hani":"한겨레","khan":"경향신문",
+    "smedaily":"중소기업신문","tvchosun":"TV조선","it.chosun":"IT조선:,"joseilbo":"조세일보","newsway":"뉴스웨이","biz.sbs":"SBS비즈","dealsitetv":"딜사이트TV","dealsite":"딜사이트","widedaily":"와이드경제","sportsseoul":"스포츠서울","bloter":"블로터","m-joongang":"월간중앙","realty.chosun":"땅집고","mediapen":"미디어펜","insightkorea":"인사이트","yonhapnewstv":"연합뉴스TV","seoultimes":"서울타임즈","joongangenews":"중앙이코노미","sportschosun":"스포츠조선","seoulfn":"서울파이낸스","sedaily":"서울경제","ceoscoredaily":"CEO스코어데일리","seouleconews":"서울이코노미","magazine.hankyung":"한경비즈니스","biz.chosun":"조선비즈","chosun":"조선일보","joongang":"중앙일보","donga":"동아일보","hani":"한겨레","khan":"경향신문",
     "yna":"연합뉴스","ytn":"와이티엔","kbsm":"경북신문","imnews":"MBC","kbs":"KBS","sbs":"SBS","mt.co":"머니투데이",
     "edaily":"이데일리","heraldcorp":"헤럴드경제","newsis":"뉴시스","newspim":"뉴스핌",
     "etnews":"전자신문","energy-news":"에너지신문","electimes":"일렉트릭타임스",
