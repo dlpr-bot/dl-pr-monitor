@@ -68,7 +68,7 @@ IRRELEVANT_PATTERNS = [
 ]
 
 MEDIA_MAP = {
-    "smedaily":"중소기업신문","tvchosun":"TV조선","it.chosun":"IT조선","joseilbo":"조세일보","newsway":"뉴스웨이","biz.sbs":"SBS비즈","dealsitetv":"딜사이트TV","dealsite":"딜사이트","widedaily":"와이드경제","sportsseoul":"스포츠서울","bloter":"블로터","m-joongang":"월간중앙","realty.chosun":"땅집고","mediapen":"미디어펜","insightkorea":"인사이트","yonhapnewstv":"연합뉴스TV","seoultimes":"서울타임즈","joongangenews":"중앙이코노미","sportschosun":"스포츠조선","seoulfn":"서울파이낸스","sedaily":"서울경제","ceoscoredaily":"CEO스코어데일리","seouleconews":"서울이코노미","magazine.hankyung":"한경비즈니스","biz.chosun":"조선비즈","chosun":"조선일보","joongang":"중앙일보","donga":"동아일보","hani":"한겨레","khan":"경향신문",
+    "mtn":"머니투데이방송","smedaily":"중소기업신문","tvchosun":"TV조선","it.chosun":"IT조선","joseilbo":"조세일보","newsway":"뉴스웨이","biz.sbs":"SBS비즈","dealsitetv":"딜사이트TV","dealsite":"딜사이트","widedaily":"와이드경제","sportsseoul":"스포츠서울","bloter":"블로터","m-joongang":"월간중앙","realty.chosun":"땅집고","mediapen":"미디어펜","insightkorea":"인사이트","yonhapnewstv":"연합뉴스TV","seoultimes":"서울타임즈","joongangenews":"중앙이코노미","sportschosun":"스포츠조선","seoulfn":"서울파이낸스","sedaily":"서울경제","ceoscoredaily":"CEO스코어데일리","seouleconews":"서울이코노미","magazine.hankyung":"한경비즈니스","biz.chosun":"조선비즈","chosun":"조선일보","joongang":"중앙일보","donga":"동아일보","hani":"한겨레","khan":"경향신문",
     "yna":"연합뉴스","ytn":"와이티엔","kbsm":"경북신문","imnews":"MBC","kbs":"KBS","sbs":"SBS","mt.co":"머니투데이",
     "edaily":"이데일리","heraldcorp":"헤럴드경제","newsis":"뉴시스","newspim":"뉴스핌",
     "etnews":"전자신문","energy-news":"에너지신문","electimes":"일렉트릭타임스",
@@ -535,11 +535,6 @@ def _extract_core_issue(headlines):
 
 # ── 카테고리별 고정 전략 테이블 (카테고리가 1차 기준) ──────────────
 _CAT_STRATEGY = {
-    "전기요금": {
-        "action_tpl": "원가·지원 실적 팩트시트 즉시 배포",
-        "msg":    "요금·가격 이슈는 감정이 아닌 숫자로 설득해야 한다. 원가 대비 현실화 수치와 지원 실적이 설득의 무기다.",
-        "steps":  ["원가·지원 실적 수치화 자료 즉시 배포", "취약 계층 지원 성과 스토리 발굴·배포", "핵심 매체 1:1 설명회 개최"],
-    },
     "재무·경영": {
         "action_tpl": "전기 대비 재무 개선 수치 중심으로 선제 공개",
         "msg":    "재무 보도에는 '얼마나 줄었나'를 먼저 말해야 한다. 과거 대비 개선폭이 핵심이다.",
@@ -564,11 +559,6 @@ _CAT_STRATEGY = {
         "action_tpl": "온실가스 감축 실적·재생에너지 투자 정량 공개",
         "msg":    "추상적 목표보다 '작년 대비 몇% 줄었다'는 구체 숫자가 신뢰를 만든다.",
         "steps":  ["온실가스 감축 실적 정량 공개", "재생에너지 투자·발전량 구체 수치 제시", "국제 협약 대비 성과 비교 자료 제공"],
-    },
-    "공기업·거버넌스": {
-        "action_tpl": "감사 결과 자진 공개 및 재발방지 조치 즉시 발표",
-        "msg":    "비리·특혜 의혹은 숨기면 더 크게 터진다. 먼저 공개하는 것이 신뢰 회복의 시작이다.",
-        "steps":  ["감사 결과 자진 공개로 선제 대응", "구체적 윤리경영 조치 언론 제공", "외부 제3자 검증 활용으로 신뢰성 확보"],
     },
     "정책·규제": {
         "action_tpl": "법무팀 공식 입장 24시간 내 발표 및 사실관계 선제 공개",
