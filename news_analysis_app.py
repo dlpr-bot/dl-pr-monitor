@@ -54,7 +54,7 @@ MEDIA_GRADE = {
     "서울경제":{"rank":17,"rate":0.08,"grade":"A"},"세계일보":{"rank":18,"rate":0.02,"grade":"A"},
     "머니투데이":{"rank":19,"rate":0.05,"grade":"A"},"이데일리":{"rank":20,"rate":0.04,"grade":"A"},
     "헤럴드경제":{"rank":21,"rate":0.03,"grade":"A"},"뉴시스":{"rank":22,"rate":0.02,"grade":"A"},
-    "뉴스1":{"rank":23,"rate":0.02,"grade":"A"},"연합뉴스TV":{"rank":23,"rate":0.02,"grade":"A"},
+    "뉴스1":{"rank":23,"rate":0.02,"grade":"A"},"연합뉴스TV":{"rank":23,"rate":0.02,"grade":"A"},"한국경제TV":{"rank":23,"rate":0.02,"grade":"A"},
 }
 GRADE_COLOR = {"S":"#B71C1C","A":"#E64A19","B":"#1565C0","C":"#2E7D32","D":"#616161"}
 
@@ -68,7 +68,8 @@ IRRELEVANT_PATTERNS = [
 ]
 
 MEDIA_MAP = {
-    "mtn":"머니투데이방송","smedaily":"중소기업신문","tvchosun":"TV조선","it.chosun":"IT조선","joseilbo":"조세일보","newsway":"뉴스웨이","biz.sbs":"SBS비즈","dealsitetv":"딜사이트TV","dealsite":"딜사이트","widedaily":"와이드경제","sportsseoul":"스포츠서울","bloter":"블로터","m-joongang":"월간중앙","realty.chosun":"땅집고","mediapen":"미디어펜","insightkorea":"인사이트","yonhapnewstv":"연합뉴스TV","seoultimes":"서울타임즈","joongangenews":"중앙이코노미","sportschosun":"스포츠조선","seoulfn":"서울파이낸스","sedaily":"서울경제","ceoscoredaily":"CEO스코어데일리","seouleconews":"서울이코노미","magazine.hankyung":"한경비즈니스","biz.chosun":"조선비즈","chosun":"조선일보","joongang":"중앙일보","donga":"동아일보","hani":"한겨레","khan":"경향신문",
+    "edu.donga":"에듀동아","mbnmoney":"매일경제TV","einfomax":"연합인포맥스","insight":"인사이트","areyou":"아유경제","sports.hankooki":"스포츠한국","news2day":"뉴스투데이","fntimes":"한국금융신문","wowtv":"한국경제TV","smarttoday":"스마트투데이","ziksir":"직썰","kpenews":"한국정경신문","koreastocknews":"증권경제신문","businesskorea":"비즈니스코리아","sateconomy":"토요경제","paxetv":"팍스경제TV","niceeconomy":"나이스경제",
+    "ebn":"EBN","businessplus":"비즈니스플러스","bbsi":"BBS","ikld":"국토일보","newslock":"뉴스락","cstimes":"컨슈머타임스","betanews":"베타뉴스","thebigdata":"빅데이터뉴스","lawissue":"로이슈","straight":"스트레이트뉴스","g-enews":"글로벌이코노믹","financialpost":"파이낸셜포스트","viva100":"브릿지경제","sisaon":"시사오늘","starnews":"스타뉴스","arunews":"한국주택경제","goodkyung":"굿모닝경제","econovill":"이코노믹리뷰","dizzotv":"디지틀조선TV","redaily":"철도경제","segyebiz":"세계비즈","investchosun":"인베스트조선","mtn":"머니투데이방송","smedaily":"중소기업신문","tvchosun":"TV조선","it.chosun":"IT조선","joseilbo":"조세일보","newsway":"뉴스웨이","biz.sbs":"SBS비즈","dealsitetv":"딜사이트TV","dealsite":"딜사이트","widedaily":"와이드경제","sportsseoul":"스포츠서울","bloter":"블로터","m-joongang":"월간중앙","realty.chosun":"땅집고","mediapen":"미디어펜","insightkorea":"인사이트","yonhapnewstv":"연합뉴스TV","seoultimes":"서울타임즈","joongangenews":"중앙이코노미","sportschosun":"스포츠조선","seoulfn":"서울파이낸스","sedaily":"서울경제","ceoscoredaily":"CEO스코어데일리","seouleconews":"서울이코노미","magazine.hankyung":"한경비즈니스","biz.chosun":"조선비즈","chosun":"조선일보","joongang":"중앙일보","donga":"동아일보","hani":"한겨레","khan":"경향신문",
     "yna":"연합뉴스","ytn":"와이티엔","kbsm":"경북신문","imnews":"MBC","kbs":"KBS","sbs":"SBS","mt.co":"머니투데이",
     "edaily":"이데일리","heraldcorp":"헤럴드경제","newsis":"뉴시스","newspim":"뉴스핌",
     "etnews":"전자신문","energy-news":"에너지신문","electimes":"일렉트릭타임스",
@@ -1884,63 +1885,6 @@ def get_market_data(custom_ticker=""):
 
     return d
 
-def mhdr(d):
-    def cs(v, up):
-        c = "#C62828" if up else "#1565C0"
-        return f"<span style='color:{c};font-size:10px;font-weight:600;'>{v}</span>"
-
-    def cell(label, val, chg_html, border_left=True):
-        bl = "border-left:1px solid #eee;padding-left:10px;" if border_left else ""
-        return (f"<div style='margin-right:10px;{bl}'>"
-                f"<div style='font-size:8px;color:#888;font-weight:700;'>{label}</div>"
-                f"<div style='font-size:12px;font-weight:700;color:#003366;'>{val}</div>"
-                f"<div>{chg_html}</div></div>")
-
-    # 코스피 / 코스닥
-    kospi_row  = cell("코스피",  d["kospi"],  cs(d["kospi_c"]+" "+d["kospi_p"],  d["kospi_up"]),  border_left=False)
-    kosdaq_row = cell("코스닥",  d["kosdaq"], cs(d["kosdaq_c"]+" "+d["kosdaq_p"], d["kosdaq_up"]))
-    sep1 = "<div style='border-left:2px solid #003366;height:30px;margin:0 10px;'></div>"
-
-    # 나스닥 / S&P500
-    nasdaq_row = cell("나스닥",  d["nasdaq"], cs(d["nasdaq_c"]+" "+d["nasdaq_p"], d["nasdaq_up"]))
-    sp500_row  = cell("S&P500", d["sp500"],  cs(d["sp500_c"]+" "+d["sp500_p"],  d["sp500_up"]))
-    sep2 = "<div style='border-left:2px solid #ddd;height:30px;margin:0 10px;'></div>"
-
-    # USD/KRW + 두바이유
-    usd_row = cell("USD/KRW",   d["usd_krw"], cs(d["usd_c"], d["usd_up"]))
-    oil_row = cell("두바이유($/bbl)", d["oil"], cs(d["oil_c"], d["oil_up"]))
-
-    # 구독자 지정 회사 주가 — 있으면 별도 섹션, 없으면 공간 자체 제거
-    cn = d.get("custom_name","").strip()
-    has_custom = bool(cn and d.get("custom_price","—") != "—")
-    if has_custom:
-        custom_section = (
-            sep2 +
-            "<div style='background:#F3E5F5;border-radius:4px;padding:4px 10px;margin-right:6px;'>"
-            f"<div style='font-size:8px;color:#7B1FA2;font-weight:700;'>📌 {cn}</div>"
-            f"<div style='font-size:13px;font-weight:800;color:#6A1B9A;'>{d['custom_price']}</div>"
-            f"<div>{cs(d['custom_c'], d['custom_up'])}</div>"
-            "</div>"
-        )
-    else:
-        custom_section = ""
-
-    updated = f"<div style='margin-left:auto;font-size:8px;color:#aaa;white-space:nowrap;'>{d['updated']}</div>"
-
-    # 레이아웃: 코스피/코스닥 | 나스닥/S&P | [회사주가(있을때)] | USD/두바이유 | [대통령일정] | 업데이트
-    return (
-        f"<div style='background:white;border:1px solid #ddd;border-radius:5px;"
-        f"padding:7px 14px;margin-bottom:8px;display:flex;align-items:center;"
-        f"flex-wrap:wrap;gap:4px;font-family:{FONT_KR};'>"
-        + kospi_row + kosdaq_row
-        + sep1
-        + nasdaq_row + sp500_row
-        + custom_section      # 구독자 전용: 회사 주가
-        + sep2
-        + usd_row + oil_row
-        + updated
-        + "</div>"
-    )
 
 # ── 차트 함수 ──────────────────────────────────────────
 def cfg(): return {
