@@ -3065,7 +3065,6 @@ _custom_name   = st.session_state.get("header_company", "")
 md = get_market_data(custom_ticker=_custom_ticker)
 md["custom_name"] = _custom_name  # 표시명 덮어쓰기
 st.markdown(f"""<div style='background:#003366;color:white;padding:8px 16px;border-radius:5px;display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-family:{FONT_KR};'><span style='font-size:15px;font-weight:700;'>⚡ DL 뉴스 분석시스템</span><span style='font-size:10px;opacity:.7;margin-left:6px;'>by 김 차장</span><span style='font-size:8px;opacity:.65;'>{(datetime.utcnow()+timedelta(hours=9)).strftime('%Y.%m.%d')} | 열독률 등급 기반 | 네이버 뉴스 API</span></div>""", unsafe_allow_html=True)
-st.markdown(md, unsafe_allow_html=True)
 
 with st.sidebar:
     st.markdown(f"<h3 style='font-family:{FONT_KR};'>분석 설정</h3>", unsafe_allow_html=True)
