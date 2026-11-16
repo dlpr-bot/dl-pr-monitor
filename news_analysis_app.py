@@ -1144,7 +1144,7 @@ def build_email_html(arts, df, label, period_str, days=1):
 
   <!-- 헤더 -->
   <div style='background:#003366;color:white;padding:20px 24px;'>
-    <div style='font-size:20px;font-weight:800;'>⚡ {label} 언론보도 유형분석 리포트</div>
+    <div style='font-size:20px;font-weight:800;'> ★ {label} 언론보도 유형분석 리포트</div>
     <div style='font-size:11px;opacity:.75;margin-top:5px;'>{period_str} | {now_str} 자동 발송 | DL 뉴스 분석시스템 <span style="font-size:9px;opacity:.7;">by 김 차장</span></div>
   </div>
 
